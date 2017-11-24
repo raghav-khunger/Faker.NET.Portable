@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -93,6 +93,19 @@ namespace Faker.Tests.Common
 		public void Should_Throw_ArgumentOutOfRangeException_If_Words_Count_Below_Zero()
 		{
 			Assert.Throws<ArgumentOutOfRangeException>(() => Lorem.Words(-1));
+		}
+
+		[Test]
+		[Repeat(50)]
+		public void Should_Generate_Random_Word_ContentTitle([Range(2, 10)] int length)
+		{
+			string title = Lorem.ContentTitle(length);
+
+			int wordsCount = title.Split(' ').Length;
+
+			Assert.IsTrue(wordsCount >= 2);
+			Assert.IsTrue(wordsCount <= 10);
+			Assert.That(wordsCount, Is.EqualTo(length));
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -149,6 +149,22 @@ namespace Faker
 			}
 
 			return count.Times(x => Resources.Lorem.Words.Split(Config.SEPARATOR).Random());
+		}
+
+		public static string ContentTitle()
+		{
+			return ContentTitle(0);
+		}
+
+		public static string ContentTitle(int numberOfWords)
+		{
+			if (numberOfWords <= 0)
+			{
+				numberOfWords = RandomNumber.Next(3, 8);
+			}
+
+			string contentTitle = string.Join(" ", Words(numberOfWords)).Capitalise();
+			return contentTitle;
 		}
 	}
 }

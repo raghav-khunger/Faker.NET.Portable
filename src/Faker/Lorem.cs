@@ -166,5 +166,23 @@ namespace Faker
 			string contentTitle = string.Join(" ", Words(numberOfWords)).Capitalise();
 			return contentTitle;
 		}
+
+		public static string ContentTags()
+		{
+			return ContentTags(0);
+		}
+
+		public static string ContentTags(int numberOfTags)
+		{
+			if (numberOfTags <= 0)
+			{
+				numberOfTags = RandomNumber.Next(2, 5);
+			}
+
+			string tags = string.Join(",", Words(numberOfTags).Cast<string>()
+								.Where(c => !string.IsNullOrWhiteSpace(c))
+								.Distinct());
+			return tags;
+		}
 	}
 }
